@@ -38,6 +38,18 @@ make down.migrate
 cp sample.dev .env.dev
 ```
 
+<h2>Install air reload</h2>
+
+
+```bash
+curl -sSfL https://raw.githubusercontent.com/cosmtrek/air/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
+```
+
+```bash
+# check air
+air -v
+```
+
 <h2>Run Project</h2>
 
 ```bash
