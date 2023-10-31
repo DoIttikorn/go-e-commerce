@@ -28,10 +28,12 @@ type IFindProductBuilder interface {
 	PrintQuery()
 }
 
+// เป็นตัวสร้าง builder pattern ของ find product
 type findProductBuilder struct {
-	db             *sqlx.DB
-	req            *products.ProductFilter
-	query          string
+	db    *sqlx.DB
+	req   *products.ProductFilter
+	query string
+	// fix sql injection
 	lastStackIndex int
 	values         []any
 }
@@ -209,6 +211,7 @@ func (b *findProductBuilder) PrintQuery() {
 	fmt.Println(b.query)
 }
 
+// เป็นการเลือกใช้ builder ตามที่เราต้องการ
 type findProductEngineer struct {
 	builder IFindProductBuilder
 }

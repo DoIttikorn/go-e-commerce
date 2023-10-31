@@ -13,6 +13,7 @@ up.migrate:
 	migrate -database 'postgres://banana:123456@0.0.0.0:4444/ecommerce?sslmode=disable' -source file://$(migration_path_all_dir) -verbose up
 down.migrate:
 	migrate -database 'postgres://banana:123456@0.0.0.0:4444/ecommerce?sslmode=disable' -source file://$(migration_path_all_dir) -verbose down
+
 # how to use 
 # make gen.migrate name=init
 gen.migrate:
