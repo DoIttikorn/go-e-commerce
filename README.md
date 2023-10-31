@@ -32,6 +32,12 @@ make up.migrate
 make down.migrate
 ```
 
+<h2>Copy ENV File</h2>
+
+```bash
+cp sample.dev .env.dev
+```
+
 <h2>Run Project</h2>
 
 ```bash
