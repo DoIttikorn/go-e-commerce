@@ -7,6 +7,7 @@ APP_READ_TIMEOUT=60
 APP_WRITE_TIMEOUT=60
 APP_FILE_LIMIT=2097152
 APP_GCP_BUCKET="e-commerce-shop"
+APP_ENV="development"
 
 JWT_SECERT_KEY=asdjhfjashdhfbajshdfbajshdbfjhabfd
 JWT_API_KEY=aklsdjfkljads

@@ -53,6 +53,7 @@ func LoadConfig(path string) ConfigImpl {
 			bodyLimit:    convertToInt(envMap["APP_BODY_LIMIT"], "APP_BODY_LIMIT"),
 			fileLimit:    convertToInt(envMap["APP_FILE_LIMIT"], "APP_FILE_LIMIT"),
 			gcpBucket:    envMap["APP_GCP_BUCKET"],
+			env:          envMap["APP_ENV"],
 		},
 		db: &db{
 			host:          envMap["DB_HOST"],
@@ -99,6 +100,8 @@ func (a *app) FileLimit() int              { return a.fileLimit }
 func (a *app) GCPBucket() string           { return a.gcpBucket }
 func (a *app) Host() string                { return a.host }
 func (a *app) Port() int                   { return a.port }
+func (a *app) LogPath() string             { return "assets/logs" }
+func (a *app) Env() string                 { return a.env }
 
 type AppConfigImpl interface {
 	Url() string // host:port
@@ -111,6 +114,8 @@ type AppConfigImpl interface {
 	GCPBucket() string
 	Host() string
 	Port() int
+	LogPath() string
+	Env() string
 }
 
 type app struct {
@@ -123,6 +128,7 @@ type app struct {
 	bodyLimit    int
 	fileLimit    int
 	gcpBucket    string
+	env          string
 }
 type DBConfigImpl interface {
 	Url() string

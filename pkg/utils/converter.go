@@ -1,5 +1,6 @@
 package utils
 
+// ใช้ในการแปลงเลขฐานสอง เพื่อใช้ต่อในเรื่องของ role ในการเข้าถึง api
 func BinaryConverter(number int, bits int) []int {
 	factor := number
 	result := make([]int, bits)

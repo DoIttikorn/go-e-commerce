@@ -7,6 +7,7 @@ import (
 	"os/signal"
 
 	"github.com/Doittikorn/go-e-commerce/config"
+	"github.com/Doittikorn/go-e-commerce/pkg/logger"
 	"github.com/gofiber/fiber/v2"
 	"github.com/jmoiron/sqlx"
 )
@@ -39,6 +40,8 @@ func NewServer(cfg config.ConfigImpl, db *sqlx.DB) ServerImpl {
 }
 
 func (s *server) Start() {
+	// create folder log if not exists
+	logger.NewStorage(s.cfg.App()).VerifyEnv().InitStorage()
 
 	// Middlewrare
 	middlewares := InitMiddlewares(s)

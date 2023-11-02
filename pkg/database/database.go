@@ -18,8 +18,8 @@ func DbConnectPostgresql(cfg config.DBConfigImpl) *sqlx.DB {
 	return db
 }
 
+// connect to mysql
 func DbConnectMySQL(cfg config.DBConfigImpl) *sqlx.DB {
-	// connect to mysql
 
 	db, err := sqlx.Connect("mysql", "root:my-secret-pw@tcp(localhost:3306)/test")
 	if err != nil {
