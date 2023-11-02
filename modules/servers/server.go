@@ -41,7 +41,7 @@ func NewServer(cfg config.ConfigImpl, db *sqlx.DB) ServerImpl {
 
 func (s *server) Start() {
 	// create folder log if not exists
-	logger.NewStorage(s.cfg.App()).VerifyEnv().InitStorage()
+	logger.NewStorage(s.cfg.App()).VerifyEnv().InitLocalStorage()
 
 	// Middlewrare
 	middlewares := InitMiddlewares(s)

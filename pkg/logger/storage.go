@@ -8,7 +8,7 @@ import (
 )
 
 type StorageImpl interface {
-	InitStorage()
+	InitLocalStorage()
 	VerifyEnv() StorageImpl
 }
 
@@ -33,7 +33,7 @@ func (s *storage) VerifyEnv() StorageImpl {
 	return s
 }
 
-func (s storage) InitStorage() {
+func (s storage) InitLocalStorage() {
 	if s.isMkdir {
 		if _, err := os.Stat(s.logPath); os.IsNotExist(err) {
 			if err := os.MkdirAll(s.logPath, 0755); err != nil {
