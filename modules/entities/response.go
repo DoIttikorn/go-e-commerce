@@ -34,7 +34,7 @@ func NewResponse(c *fiber.Ctx) ResponseImpl {
 func (r *Response) Success(code int, data any) ResponseImpl {
 	r.StatusCode = code
 	r.Data = data
-	logger.InitLogger(r.Context, &r.Data).Print().Save()
+	logger.New(r.Context, &r.Data).Print().SaveToStorage()
 	return r
 }
 
@@ -46,7 +46,7 @@ func (r *Response) Error(code int, traceId, msg string) ResponseImpl {
 		Msg:     msg,
 	}
 
-	logger.InitLogger(r.Context, &r.ErrorRes).Print().Save()
+	logger.New(r.Context, &r.ErrorRes).Print().SaveToStorage()
 
 	r.IsError = true
 	return r

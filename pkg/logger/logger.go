@@ -11,14 +11,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-type LoggerImpl interface {
-	Print() LoggerImpl
-	Save()
-	SetQuery(c *fiber.Ctx)
-	SetBody(c *fiber.Ctx)
-	SetResponse(c any)
-}
-
 type logger struct {
 	Time       string `json:"time"`
 	Ip         string `json:"ip"`
@@ -31,7 +23,7 @@ type logger struct {
 }
 
 // ใช้ในการสร้าง logger เพื่อ save ข้อมูลต่างๆ จาก context library นั้นๆ
-func InitLogger(c *fiber.Ctx, res any) LoggerImpl {
+func New(c *fiber.Ctx, res any) LoggerImpl {
 	log := &logger{
 		Time:       time.Now().Local().Format("2006-01-02 15:04:05"),
 		Ip:         c.IP(),
@@ -51,9 +43,11 @@ func (l *logger) Print() LoggerImpl {
 	return l
 }
 
+// TODO: ทำให้การที่อยู่การ save log ไม่ขึ้นอยู่กับฟังก์ชันนี้
+//
 // save ข้อมูลลง store ที่เรากำหนดไว้
-func (l *logger) Save() {
-	data := utils.OutPut(l)
+func (l *logger) SaveToStorage() {
+	data := utils.OutPut(l) // เอาข้อมูลใน struct logger มาเป็น  byte[]
 
 	fileName := fmt.Sprintf("./assets/logs/logger_%v.txt", strings.ReplaceAll(time.Now().Format("2006-01-02"), "-", ""))
 	file, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
